@@ -16,16 +16,16 @@ ActiveRecord::Schema.define(version: 20160226102116) do
   create_table "rides", force: :cascade do |t|
     t.string   "from",           limit: 255
     t.string   "to",             limit: 255
-    t.decimal  "from_lattitude",             precision: 10
-    t.decimal  "from_longitude",             precision: 10
-    t.decimal  "to_longitude",               precision: 10
-    t.decimal  "to_lattitude",               precision: 10
-    t.decimal  "distance",                   precision: 10
+    t.decimal  "from_latitude",              precision: 16, scale: 10
+    t.decimal  "from_longitude",             precision: 16, scale: 10
+    t.decimal  "to_longitude",               precision: 16, scale: 10
+    t.decimal  "to_latitude",                precision: 16, scale: 10
+    t.decimal  "distance",                   precision: 6,  scale: 2
     t.date     "rode_date"
     t.integer  "provider_id",    limit: 4
-    t.decimal  "price",                      precision: 10
-    t.datetime "created_at",                                null: false
-    t.datetime "updated_at",                                null: false
+    t.decimal  "price",                      precision: 6,  scale: 2
+    t.datetime "created_at",                                           null: false
+    t.datetime "updated_at",                                           null: false
   end
 
 end
