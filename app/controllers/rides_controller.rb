@@ -1,4 +1,6 @@
+#@todo: secure by user?
 class RidesController < ApplicationController
+  #@todo: index scope only valid?
   def index
     @rides = Ride.all
   end
@@ -15,11 +17,11 @@ class RidesController < ApplicationController
       render :new, alert: @ride.errors.to_a
     end
   end
-
+  #@todo: show only valid, map in view?
   def show
     @ride = Ride.find(params[:id])
   end
-
+  #@todo make better query, add chartckick in view?
   def stats
     @rides = Ride.group_by_day(:rode_at)
   end

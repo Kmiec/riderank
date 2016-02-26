@@ -1,3 +1,5 @@
+#@todo: rode_date, from, to, provider_id validation
+#@todo: privder_id hardcoded. Is separate model needed? doubtfull ;) 
 class Ride < ActiveRecord::Base
   after_validation :geocode_all, if: :not_geocoded_by?
 
