@@ -1,0 +1,12 @@
+default: &default
+  adapter: mysql2
+  pool: 5
+  timeout: 5000
+  database: riderank
+  username: username
+  password: t0p53cr3t
+  reconnect:true
+development:
+  <<: *default
+production:
+  <<: *default
