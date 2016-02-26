@@ -10,10 +10,10 @@
     = f.text_field :price
   %label
     Rode at:
-    = f.text_field :rode_date
+    = f.text_field :rode_date, value: @ride.rode_date || Date.today
   %label
     Provider
-    = f.text_field :provider_id
+    = f.select :provider_id, Ride.providers.invert
   %button{type: :submit} Save
 
 

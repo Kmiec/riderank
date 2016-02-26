@@ -11,10 +11,11 @@ class RidesController < ApplicationController
 
   def create
     @ride = Ride.create(ride_params)
-    if @ride.valid?
+    if @ride.persisted?
       redirect_to rides_path, notice: 'Good news! Ride aproved!'
     else
-      render :new, alert: @ride.errors.to_a
+      flash[:alert]= 'This is sad. Ride is not aproved!'
+      render :new
     end
   end
   #@todo: show only valid, map in view?
@@ -28,6 +29,6 @@ class RidesController < ApplicationController
   
   private
   def ride_params
-    params.fetch(:ride,{}).permit(:from,:to,:rode_at,:price,:provider_id)
+    params.fetch(:ride,{}).permit(:from,:to,:rode_date,:price,:provider_id)
   end
 end

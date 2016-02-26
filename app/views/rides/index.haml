@@ -1,4 +1,19 @@
 %h1 My Rides
-
-- @rides.each do |ride|
-  =ride.id
+%table.table.table-striped
+  %thead
+    %tr
+      %th no#
+      %th from
+      %th to
+      %th distance
+      %th price
+      %th date
+  %tbody
+    - @rides.each_with_index do |r,i|
+      %tr
+        %th= i+1
+        %td= r.from
+        %td= r.to
+        %td= r.distance
+        %td= r.price
+        %td= r.rode_date
