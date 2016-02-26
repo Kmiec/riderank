@@ -2,12 +2,13 @@
 %table.table.table-striped
   %thead
     %tr
-      %th no#
-      %th from
-      %th to
-      %th distance
-      %th price
-      %th date
+      %th No#
+      %th From
+      %th To
+      %th Distance
+      %th Price
+      %th Date
+      %th Taxi
   %tbody
     - @rides.each_with_index do |r,i|
       %tr
@@ -17,3 +18,4 @@
         %td= r.distance
         %td= r.price
         %td= r.rode_date
+        %td= r.provider

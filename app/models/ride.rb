@@ -1,8 +1,8 @@
-#@todo: rode_date, from, to, provider_id validation
-#@todo: privder_id hardcoded. Is separate model needed? doubtfull ;) 
 class Ride < ActiveRecord::Base
-  validates_presence_of :rode_date, :from, :to, :provider_id, :price, :distance
+  validates_presence_of :rode_date, :from, :to, :provider_id, :price
   after_validation :geocode_all, if: :not_geocoded_by?
+
+  default_scope -> { order('rode_date DESC')}
 
   def self.providers
     {
@@ -12,14 +12,22 @@ class Ride < ActiveRecord::Base
     }
   end
 
+  def provider
+    Ride.providers[self.provider_id]
+  end
+
   def coords field = :from
     [self.send("#{field}_longitude"),self.send("#{field}_latitude")]
   end
   def geocoded_by
     %w(from to)
-  end 
-  protected
-  #@todo: rescue, check first existance, distance validation
+  end
+
+  def self.stats_query
+    subquery= '(SELECT group_concat(DISTINCT provider_id,",")) as pids'
+    self.select('rode_date,SUM(distance) as sum_ride, AVG(distance) as avg_ride, AVG(price) as avg_price, '+subquery).group(:rode_date)
+  end
+  protected  
   def geocode_all
     geocoded_by.each do |field|
       # possible multiple values returned. check only first 

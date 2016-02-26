@@ -1,20 +1,16 @@
-=form_for(@ride) do |f|
-  %label
-    From:
-    = f.text_field :from
-  %label
-    To:
-    = f.text_field :to
-  %label
-    Price
-    = f.text_field :price
-  %label
-    Rode at:
-    = f.text_field :rode_date, value: @ride.rode_date || Date.today
-  %label
-    Provider
-    = f.select :provider_id, Ride.providers.invert
-  %button{type: :submit} Save
+=form_for(@ride,class:'form-horizontal') do |f|
+  %label From:
+  = f.text_field :from, class: 'form-control'
+  %label To:
+  = f.text_field :to, class: 'form-control'
+  %label Price
+  = f.text_field :price, class: 'form-control'
+  %label Rode at:
+  = f.text_field :rode_date, value: @ride.rode_date || Date.today, class: 'form-control'
+  %label Provider
+  = f.select :provider_id, Ride.providers.invert, {},{class: 'form-control'}
+  %br
+  %button{type: :submit, class:'form-control btn btn-default'} Save
 
 
 

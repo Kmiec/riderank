@@ -15,6 +15,7 @@ class RidesController < ApplicationController
       redirect_to rides_path, notice: 'Good news! Ride aproved!'
     else
       flash[:alert]= 'This is sad. Ride is not aproved!'
+      flash[:alert]= @ride.errors.to_a
       render :new
     end
   end
@@ -22,9 +23,9 @@ class RidesController < ApplicationController
   def show
     @ride = Ride.find(params[:id])
   end
-  #@todo make better query, add chartckick in view?
+
   def stats
-    @rides = Ride.group_by_day(:rode_at)
+    @rides = Ride.stats_query
   end
   
   private

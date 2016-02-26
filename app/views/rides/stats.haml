@@ -1,1 +1,17 @@
 %h1 Stats
+%table.table.table-striped
+  %thead
+    %tr
+      %th Day
+      %th Rides sum
+      %th Avg. ride
+      %th Avg. price
+      %th Taxis
+  %tbody
+    - @rides.each do |r|
+      %tr
+        %th= r.rode_date
+        %th= r.sum_ride
+        %td= r.avg_ride
+        %td= r.avg_price
+        %td= provider_list r.pids
