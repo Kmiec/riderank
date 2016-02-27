@@ -14,8 +14,7 @@ class RidesController < ApplicationController
     if @ride.persisted?
       redirect_to rides_path, notice: 'Good news! Ride aproved!'
     else
-      flash[:alert]= 'This is sad. Ride is not aproved!'
-      flash[:alert]= @ride.errors.to_a
+      flash.now[:alert]= 'This is sad. Ride is not aproved! Fill up required fields!'
       render :new
     end
   end
