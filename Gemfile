@@ -5,6 +5,8 @@ gem 'mysql2','~> 0.3.18'
 gem 'groupdate'
 gem 'geocoder'
 gem 'haml'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 #assets
 gem 'jquery-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'

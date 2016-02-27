@@ -1,0 +1,49 @@
+%h1 Ride at #{@ride.rode_date} for #{@ride.price} and #{@ride.distance}KM
+%script{src:"https://maps.googleapis.com/maps/api/js?sensor=false"}
+#map-canvas
+:javascript
+  //@see: http://stackoverflow.com/questions/5959788/google-maps-api-v3-how-show-the-direction-from-a-point-a-to-point-b-blue-line
+  function initMap() {
+  var pointA = new google.maps.LatLng(#{@ride.from_latitude},#{@ride.from_longitude}),
+    pointB = new google.maps.LatLng(#{@ride.to_latitude},#{@ride.to_longitude}),
+    myOptions = {
+      zoom: 7,
+      center: pointA
+    },
+    map = new google.maps.Map(document.getElementById('map-canvas'), myOptions),
+    // Instantiate a directions service.
+    directionsService = new google.maps.DirectionsService,
+    directionsDisplay = new google.maps.DirectionsRenderer({
+      map: map
+    }),
+    markerA = new google.maps.Marker({
+      position: pointA,
+      title: "Ride from",
+      label: "A",
+      map: map
+    }),
+    markerB = new google.maps.Marker({
+      position: pointB,
+      title: "Ride to",
+      label: "B",
+      map: map
+    });
+
+  // get route from A to B
+  calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB);
+  }
+  function calculateAndDisplayRoute(directionsService, directionsDisplay, pointA, pointB) {
+  directionsService.route({
+    origin: pointA,
+    destination: pointB,
+    travelMode: google.maps.TravelMode.DRIVING
+  }, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+    } else {
+      window.alert('Directions request failed due to ' + status);
+    }
+  });
+  }
+  
+  initMap();

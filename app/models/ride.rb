@@ -3,7 +3,7 @@ class Ride < ActiveRecord::Base
   after_validation :geocode_all, if: :not_geocoded_by?
 
   default_scope -> { order('rode_date DESC')}
-
+  scope :geocoded, -> { where.not(distance:nil,from_latitude:nil,from_longitude:nil,to_latitude:nil,to_longitude:nil)}
   def self.providers
     {
       1=>'Sawa',
@@ -25,7 +25,7 @@ class Ride < ActiveRecord::Base
 
   def self.stats_query
     subquery= '(SELECT group_concat(DISTINCT provider_id,",")) as pids'
-    self.select('rode_date,SUM(distance) as sum_ride, AVG(distance) as avg_ride, AVG(price) as avg_price, '+subquery).group(:rode_date)
+    self.geocoded.select('rode_date,SUM(distance) as sum_ride, AVG(distance) as avg_ride, AVG(price) as avg_price, '+subquery).group(:rode_date)
   end
   protected  
   def geocode_all

@@ -129,6 +129,9 @@ GEM
     tilt (2.0.2)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    will_paginate (3.0.7)
+    will_paginate-bootstrap (1.0.1)
+      will_paginate (>= 3.0.3)
 
 PLATFORMS
   ruby
@@ -142,6 +145,8 @@ DEPENDENCIES
   pry
   rails (= 4.2.4)
   twitter-bootstrap-rails!
+  will_paginate
+  will_paginate-bootstrap
 
 BUNDLED WITH
    1.10.6

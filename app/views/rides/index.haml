@@ -1,21 +1,28 @@
 %h1 My Rides
-%table.table.table-striped
-  %thead
-    %tr
-      %th No#
-      %th From
-      %th To
-      %th Distance
-      %th Price
-      %th Date
-      %th Taxi
-  %tbody
-    - @rides.each_with_index do |r,i|
+.table-responsive
+  %table.table.table-striped.table-hover
+    %thead
       %tr
-        %th= i+1
-        %td= r.from
-        %td= r.to
-        %td= r.distance
-        %td= r.price
-        %td= r.rode_date
-        %td= r.provider
+        %th No#
+        %th From
+        %th To
+        %th Distance
+        %th Price
+        %th Date
+        %th Taxi
+        %th Action
+    %tbody
+      - @rides.each_with_index do |r,i|
+        %tr
+          %th= i+1
+          %td= r.from
+          %td= r.to
+          %td= r.distance
+          %td= r.price
+          %td= r.rode_date
+          %td= r.provider
+          %td= link_to 'Show', ride_path(r)
+    %tfoot
+      %tr
+        %td{colspan:8}
+          =will_paginate @rides,renderer: BootstrapPagination::Rails

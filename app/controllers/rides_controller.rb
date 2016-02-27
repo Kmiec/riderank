@@ -1,8 +1,9 @@
+require 'will_paginate'
 #@todo: secure by user?
 class RidesController < ApplicationController
-  #@todo: index scope only valid?
   def index
-    @rides = Ride.all
+    page = params[:page] || 1
+    @rides = Ride.paginate(page: page)
   end
 
   def new
@@ -20,7 +21,8 @@ class RidesController < ApplicationController
   end
   #@todo: show only valid, map in view?
   def show
-    @ride = Ride.find(params[:id])
+    @ride = Ride.geocoded.where(id:params[:id]).first
+    redirect_to rides_path, alert: 'Ride is bad or not exist. Sorry ;('  if @ride.nil?
   end
 
   def stats
