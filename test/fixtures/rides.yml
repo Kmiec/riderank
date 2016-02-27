@@ -1,21 +1,23 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  from: MyString
-  to: MyString
-  from_lattitude: 9.99
-  to_lattitude: 9.99
+  from: "Wołoska 22, Warszawa, Polska"
+  to: "Wiejska 13, Warszawa, Polska"
+  from_latitude: 52.1849446
+  to_latitude: 21.0037363
+  from_longitude: 52.1849446
+  to_longitude: 21.0037363
   distance: 9.99
-  date: 2016-02-26
+  rode_date: 2016-02-26
+  provider_id: 1
+  price: 9.99
+two:
+  from: "Wołoska 22, Warszawa, Polska"
+  to: "Wiejska 13, Warszawa, Polska"
+  from_latitude: 52.1849446
+  to_latitude: 21.0037363
+  from_longitude: 52.1849446
+  to_longitude: 21.0037363
+  distance: 9.99
+  rode_date: 2016-02-26
   provider_id: 1
   price: 9.99
 
-two:
-  from: MyString
-  to: MyString
-  from_lattitude: 9.99
-  to_lattitude: 9.99
-  distance: 9.99
-  date: 2016-02-26
-  provider_id: 1
-  price: 9.99
